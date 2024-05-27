@@ -2,13 +2,13 @@ pipeline {
     agent any 
     
     tools{
-        jdk 'jdk11'
-        maven 'Maven3'
+        jdk 'jdk17'
+        maven 'Maven'
     }
     
-    environment {
-        SCANNER_HOME=tool 'sonar-scanner'
-    }
+    // environment {
+    //     SCANNER_HOME=tool 'sonar-scanner'
+    // }
     
     stages{
         
@@ -30,16 +30,16 @@ pipeline {
             }
         }
         
-        stage("Sonarqube Analysis "){
-            steps{
-                withSonarQubeEnv('sonarqube-server') {
-                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Petclinic \
-                    -Dsonar.java.binaries=. \
-                    -Dsonar.projectKey=Petclinic '''
+        // stage("Sonarqube Analysis "){
+        //     steps{
+        //         withSonarQubeEnv('sonarqube-server') {
+        //             sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Petclinic \
+        //             -Dsonar.java.binaries=. \
+        //             -Dsonar.projectKey=Petclinic '''
     
-                }
-            }
-        }        
+        //         }
+        //     }
+        // }        
                 
          stage("Build"){
             steps{
